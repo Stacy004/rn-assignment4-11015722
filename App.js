@@ -7,7 +7,6 @@ import { createStackNavigator } from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
 
-
 function LoginScreen({ navigation }) {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -70,8 +69,8 @@ function LoginScreen({ navigation }) {
           <Image source={require('./assets/facebook.png')} style={styles.logo} />
         </TouchableOpacity>
       </View>
-      <View style={styles.register}  >
-        <Text> Haven't an account? <Text style={styles.link}  >Register </Text></Text>
+      <View style={styles.register}>
+        <Text>Haven't an account? <Text style={styles.link}>Register</Text></Text>
       </View>
 
       <StatusBar style="auto" />
@@ -80,19 +79,45 @@ function LoginScreen({ navigation }) {
 }
 
 function HomeScreen() {
+  const [searchText, setSearchText] = useState('');
+
   return (
-    <View style={styles.caption}>
-      <Text style={styles.vpn}>Eric Atsu</Text>
-      <Text style={styles.email}>eric@gmail.com</Text>
+    <View style={styles.homeContainer}>
+      <View style={styles.mainCont}>
+        <View style={styles.textContainer}>
+          <Text style={styles.vpn}>Eric Atsu</Text>
+          <Text style={styles.email}>eric@gmail.com</Text>
+        </View>
+        <View style={styles.profileContainer}>
+          <Image source={require('./assets/Ellipse.png')} style={styles.profile} />
+        </View>
+      </View>
+
+      <View style={styles.searchContainer}>
+        <View style={styles.searchBox}>
+          <Image source={require('./assets/search.png')} style={styles.searchIcon} />
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Search a job or position"
+            value={searchText}
+            onChangeText={setSearchText}
+          />
+        </View>
+        
+        <TouchableOpacity style={styles.searchSettings}>
+          <Image source={require('./assets/settings.png')} style={styles.settingsIcon} />
+        </TouchableOpacity>
+      </View>
+      <View style={styles. seeAll}>
+        <Text>Featured jobs</Text>
+        <Text>See all</Text>
+      </View>
     </View>
   );
 }
 
 export default function App() {
-  const [searchText, setSearchText] = useState('');
-  
   return (
-
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Login">
         <Stack.Screen name="Login" component={LoginScreen} options={{ headerShown: false }} />
@@ -203,14 +228,12 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
   },
-
   link: {
     color: 'blue',
   },
-  register:{
+  register: {
     marginTop: 10,
   },
-  
   vpn: {
     fontSize: 32,
     fontWeight: 'bold',
@@ -219,7 +242,7 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     width: '100%',
   },
-  email:{
+  email: {
     fontSize: 18,
     fontWeight: 'bold',
     color: '#356899',
@@ -227,12 +250,85 @@ const styles = StyleSheet.create({
     textAlign: 'left',
     width: '100%',
   },
-  caption: {
+  homeContainer: {
     flex: 1,
     justifyContent: 'flex-start', 
     alignItems: 'flex-start',    
     paddingTop: 150,              
     paddingLeft: 20,              
     backgroundColor: '#fff',
+  },
+  mainCont: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    width: '100%',
+  },
+  textContainer: {
+    flex: 1,
+  },
+  profileContainer: {
+    justifyContent: 'center',
+    alignItems: 'flex-end',
+    marginRight: 20,
+  },
+  profile: {
+    height: 50,
+    width: 50,
+    borderRadius: 25,
+  },
+  searchContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 20,
+    width: '90%',
+  },
+  searchBox: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 10,
+    paddingHorizontal: 20,
+    flex: 1,
+   
+    marginRight: 10,
+    backgroundColor: '#f5f5f5',
+  },
+  searchInput: {
+    flex: 1,
+    padding: 10,
+    borderWidth: 0,
+    fontSize:15,
+    fontWeight:20,
+    color:'gray',
+   
+  },
+  searchSettings: {
+    padding: 10,
+    backgroundColor: '#f5f5f5',
+    borderColor: 'black',
+    borderWidth: 1,
+    borderColor: 'gray',
+    borderRadius: 10,
+    height: 48,
+    width:48,
+  
+  },
+  settingsIcon: {
+   
+    width: 20,
+    height: 20,
+  },
+  searchIcon: {
+    width: 21,
+    height: 21,
+    marginRight: 10,
+  },
+  seeAll:{
+    flexDirection:'row',
+    marginTop:20,
   }
+    
+ 
 });
