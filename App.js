@@ -1,6 +1,6 @@
 import 'react-native-gesture-handler';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, Alert, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Image, Alert, ScrollView, ImageBackground } from 'react-native';
 import { StatusBar } from 'expo-status-bar';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -77,6 +77,7 @@ function LoginScreen({ navigation }) {
       </View>
 
       <StatusBar style="auto" />
+      
     </View>
   );
 }
@@ -143,9 +144,10 @@ function HomeScreen({ route }) {
         <Text style={styles.featuredJobsText}>Featured Jobs</Text>
         <Text style={styles.seeAllText}>See all</Text>
       </View>
-      
+      <ScrollView showsVerticalScrollIndicator={false} style={styles.popularJobsScroll}>
       <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.categoriesScroll}>
       <View style={styles.face} >
+      
         <View style={styles.gool }>
         <Image source={require('./assets/facebook.png')} style={styles.log} />
         </View>
@@ -159,7 +161,8 @@ function HomeScreen({ route }) {
        </View>
 
        </View>
-       <View style={styles.face} >
+       <View style={styles.ace} >
+       
         <View style={styles.gool }>
         <Image source={require('./assets/google.png')} style={styles.log} />
         </View>
@@ -173,7 +176,7 @@ function HomeScreen({ route }) {
        </View>
 
        </View>
-       <View style={styles.face} >
+       <View style={styles.case} >
         <View style={styles.gool }>
         <Image source={require('./assets/apple.png')} style={styles.log} />
         </View>
@@ -181,13 +184,15 @@ function HomeScreen({ route }) {
         <Text>Software engineer</Text>
         <Text> Facebook</Text>
         <View style={styles.amount} >
-          <Text style={styles.cent}>$180,000</Text>
-          <Text>Accra</Text>
+          <Text style={styles.cent}>$140,000</Text>
+          <Text>Califonia, USA</Text>
         </View>
        </View>
 
        </View>
+       
        <View style={styles.face} >
+        
         <View style={styles.gool }>
         <Image source={require('./assets/microsoft.jpeg')} style={styles.log} />
         </View>
@@ -195,13 +200,14 @@ function HomeScreen({ route }) {
         <Text>Software engineer</Text>
         <Text> Facebook</Text>
         <View style={styles.amount} >
-          <Text style={styles.cent}>$180,000</Text>
-          <Text>Accra</Text>
+          <Text style={styles.cent}>$150,000</Text>
+          <Text>Seattle, USA</Text>
         </View>
        </View>
+       
 
        </View>
-       <View style={styles.face} >
+       <View style={styles.ace} >
         <View style={styles.gool }>
         <Image source={require('./assets/amazon.png')} style={styles.log} />
         </View>
@@ -209,13 +215,13 @@ function HomeScreen({ route }) {
         <Text>Software engineer</Text>
         <Text> Facebook</Text>
         <View style={styles.amount} >
-          <Text style={styles.cent}>$180,000</Text>
-          <Text>Accra</Text>
+          <Text style={styles.cent}>$130,000</Text>
+          <Text>Austin, USA</Text>
         </View>
        </View>
 
        </View>
-       <View style={styles.face} >
+       <View style={styles.case} >
         <View style={styles.gool }>
         <Image source={require('./assets/spotify.png')} style={styles.log} />
         </View>
@@ -223,8 +229,8 @@ function HomeScreen({ route }) {
         <Text>Software engineer</Text>
         <Text> Facebook</Text>
         <View style={styles.amount} >
-          <Text style={styles.cent}>$180,000</Text>
-          <Text>Accra</Text>
+          <Text style={styles.cent}>$170,000</Text>
+          <Text>Los Angeles, USA</Text>
         </View>
        </View>
 
@@ -237,13 +243,13 @@ function HomeScreen({ route }) {
         <Text>Software engineer</Text>
         <Text> Facebook</Text>
         <View style={styles.amount} >
-          <Text style={styles.cent}>$180,000</Text>
-          <Text>Accra</Text>
+          <Text style={styles.cent}>$145,000</Text>
+          <Text>Boston, USA</Text>
         </View>
        </View>
 
        </View>
-       <View style={styles.face} >
+       <View style={styles.ace} >
         <View></View>
         <View style={styles.gool }>
         <Image source={require('./assets/linkedin.png')} style={styles.log} />
@@ -252,27 +258,32 @@ function HomeScreen({ route }) {
         <Text>Software engineer</Text>
         <Text> Facebook</Text>
         <View style={styles.amount} >
-          <Text style={styles.cent}>$180,000</Text>
-          <Text>Accra</Text>
+          <Text style={styles.cent}>$125,000</Text>
+          <Text>Chicago, USA</Text>
         </View>
        </View>
 
        </View>
       </ScrollView>
 
-      <View style={styles.seeAll}>
+      <View style={styles.seeSome}>
         <Text style={styles.popularJobsText}>Popular Jobs</Text>
         <Text style={styles.seeAllText}>See all</Text>
       </View>
-
-      <ScrollView showsVerticalScrollIndicator={false} style={styles.popularJobsScroll}>
+      
         {popularJobs.map((job, index) => (
-          <View key={index} style={styles.popularJob}>
+          <View key={index} style={styles.popularJobCard}>
+            <View style={styles.popularity}>
             <Image source={job.logo} style={styles.popularJobLogo} />
-            <View style={styles.popularJobInfo}>
+          </View>
+           
+            <View style={styles.popularJobDetails}>
+              <View style={styles.separate}>
               <Text style={styles.popularJobTitle}>{job.title}</Text>
               <Text style={styles.popularJobCompany}>{job.company}</Text>
-              <View style={styles.amount}>
+              </View>
+              
+              <View style={styles.popularJobMeta}>
                 <Text style={styles.popularJobSalary}>{job.salary}</Text>
                 <Text style={styles.popularJobLocation}>{job.location}</Text>
               </View>
@@ -280,6 +291,7 @@ function HomeScreen({ route }) {
           </View>
         ))}
       </ScrollView>
+      <StatusBar style="auto" />
     </View>
   );
 }
@@ -323,7 +335,7 @@ const styles = StyleSheet.create({
   greetingText: {
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#356899',
+    color: 'black',
   },
   wave: {
     width: 24,
@@ -468,7 +480,8 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    marginBottom: 10,
+    marginBottom: 30,
+    marginTop: 30,
   },
   featuredJobsText: {
     fontSize: 18,
@@ -536,12 +549,13 @@ const styles = StyleSheet.create({
     marginBottom: 15,
   },
   popularJobLogo: {
-    width: 40,
-    height: 40,
-    marginRight: 15,
+    width: 50,
+    height: 50,
+    marginRight: 20,
+    marginTop: 10,
   },
   popularJobDetails: {
-    flexDirection: 'column',
+    flexDirection: 'row',
   },
   popularJobTitle: {
     fontSize: 16,
@@ -568,21 +582,23 @@ const styles = StyleSheet.create({
     padding: 30,
     alignContent: 'center',
     
-    height: 220,
-    width: 280,
+    height: 200,
+    width: 340,
     borderRadius: 24,
     marginRight: 20,
+    marginBottom: 0,
   
   },
-  new:{
-    marginHorizontal:20,
-  },
+
+
+  
   gool:{
     backgroundColor:'white',
     width: 50,
     height: 50,
     justifyContent: 'center',
     borderRadius: 15,
+    marginRight: 10,
   
    
     
@@ -591,17 +607,56 @@ const styles = StyleSheet.create({
     marginTop:95,
     flexDirection:'row',
     justifyContent: 'center',
-   marginRight:95,
+   marginRight:80,
+   marginLeft: 1,
   },
   cent:{
     marginRight: 60,
     marginLeft: 1,
+  
+   
   },
   log:{
     marginLeft:10,
     width: 24,
     height: 24,
     borderRadius:10,
-  }
+    
+  },
+  separate:{
+    marginRight: 30,
+  },
+  popularity:{
+    width: 70,
+    height: 80,
+    marginRight: 20,
+  },
+  seeSome:{
+    marginTop: 0,
+  },
+  ace:{
+
+    flexDirection: 'row',
+    backgroundColor: '#F08080',
+    padding: 30,
+    alignContent: 'center',
+    
+    height: 200,
+    width: 330,
+    borderRadius: 24,
+    marginRight: 20,
+  },
+  case:{
+    flexDirection: 'row',
+    backgroundColor: '#87CEEB',
+    padding: 30,
+    alignContent: 'center',
+    
+    height: 200,
+    width: 330,
+    borderRadius: 24,
+    marginRight: 20,
+
+  },
+  
 });
-``
